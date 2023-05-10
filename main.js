@@ -191,41 +191,34 @@ $(window).load(function(){
 
     });
 
-    const raycaster = new THREE.Raycaster();
-const pointer = new THREE.Vector2();
+const caster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+	
+	function onClick(event) {
 
-function onPointerMove( event ) {
+  event.preventDefault();
 
-	// calculate pointer position in normalized device coordinates
-	// (-1 to +1) for both components
+  mouse.x = (event.clientX / renderer.domElement.offsetWidth) * 2 - 1;
+  mouse.y = -(event.clientY / renderer.domElement.offsetHeight) * 2 + 1;
 
-	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  caster.setFromCamera(mouse, camera);
 
-}
+  const intersects = caster.intersectObjects(scene.children);
 
-function render() {
+  if (intersects.length > 0) {
 
-	// update the picking ray with the camera and pointer position
-	raycaster.setFromCamera( pointer, camera );
-
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( scene.children );
-
-	for ( let i = 0; i < intersects.length; i ++ ) {
-
-		intersects[ i ].object.material.color.set( 0xff0000 );
-
-	}
-
-	renderer.render( scene, camera );
-
-}
-
-window.addEventListener( 'pointermove', onPointerMove );
-
-window.requestAnimationFrame(render);
+    const intersection = intersects[0];
     
+	  console.log(intersection)
+	  
+    intersection['material']['color']['r'] = 1
+
+  }
+
+}
+	
+	window.addEventListener("click", onClick, false);
+	
     window.addEventListener( 'resize', onWindowResize, false );
 
     $("#container").append(renderer.domElement);
