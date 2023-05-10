@@ -24,6 +24,8 @@ $(window).load(function(){
     
 
     var pixelData = null;
+	
+	const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     var maxLat = -100;
     var maxLon = 0;
@@ -116,6 +118,8 @@ $(window).load(function(){
     var cameraAngle = -Math.PI/1.5;
 
     var tick = function(){
+	    
+	    controls.update()
 
         var dt = Date.now() - lastTime;
 
@@ -221,7 +225,7 @@ const mouse = new THREE.Vector2();
 
 }
 	
-	const controls = new THREE.OrbitControls(camera, renderer.domElement);
+	
 	
 	window.addEventListener("click", onClick, false);
 	
