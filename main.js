@@ -221,7 +221,7 @@ const mouse = new THREE.Vector2();
 
 }
 	
-	const controls = new OrbitControls(camera, renderer.domElement);
+	const controls = new THREE.OrbitControls(camera, renderer.domElement);
 	
 	window.addEventListener("click", onClick, false);
 	
