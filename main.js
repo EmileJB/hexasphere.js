@@ -1,4 +1,8 @@
 $(window).load(function(){
+	
+	import {
+  OrbitControls
+} from "https://cdn.jsdelivr.net/npm/three@0.126.1/examples/jsm/controls/OrbitControls.js";
 
     var width = $(window).innerWidth();
     var height = $(window).innerHeight()-10;
@@ -219,6 +223,8 @@ const mouse = new THREE.Vector2();
   }
 
 }
+	
+	const controls = new OrbitControls(camera, renderer.domElement);
 	
 	window.addEventListener("click", onClick, false);
 	
