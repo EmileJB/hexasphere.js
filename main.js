@@ -211,7 +211,7 @@ const mouse = new THREE.Vector2();
     
 	  console.log(intersection)
 	  
-    intersection['material']['color']['r'] = 1
+    intersection['object']['material']['color']['r'] = 1
 
   }
 
