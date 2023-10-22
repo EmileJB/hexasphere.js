@@ -21,6 +21,8 @@ $(window).load(function(){
     projectionCanvas.width = img.width;
     projectionCanvas.height = img.height;
     projectionContext.drawImage(img, 0, 0, img.width, img.height);
+
+    var yCameraToggle = 0;
     
 
     var pixelData = null;
@@ -130,7 +132,9 @@ $(window).load(function(){
         lastTime = Date.now();
 
         camera.position.x = cameraDistance * Math.cos(cameraAngle);
+	if (yCameraToggle == 0) {
         camera.position.y = Math.sin(cameraAngle)* 10;
+	} //experiment to see what camera y position actually does
         camera.position.z = cameraDistance * Math.sin(cameraAngle);
         camera.lookAt( scene.position );
 
@@ -243,6 +247,14 @@ function protoCameraControls(event) {
 	}
 	if (code == "KeyS") {
 	 cameraDistance++;
+	}
+	if (code == "KeyL") {
+	  console.log("Camera X: " + camera.position.x);
+	  console.log("Camera Y: " + camera.position.y);
+	  console.log("Camera Z: " + camera.position.z);
+	}
+	if (code == "KeyP") {
+	  yCameraToggle = (yCameraToggle + 1) % 2;
 	}
 }
 	
