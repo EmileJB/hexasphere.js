@@ -117,6 +117,20 @@ $(window).load(function(){
     var lastTime = Date.now();
     var cameraAngle = -Math.PI/1.5;
 
+// Experimental Addition Start
+    document.addEventListener('keyup', (event) => {
+    //var name = event.key;
+    var code = event.code;
+    if (code == "KeyD") {
+  // Alert the key name and key code on keydown
+  //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+    	
+    }
+}, false);
+
+var randCounter = 0;
+//experimental addition end
+
     var tick = function(){
 	    
 	    controls.update()
@@ -124,7 +138,15 @@ $(window).load(function(){
         var dt = Date.now() - lastTime;
 
         var rotateCameraBy = (2 * Math.PI)/(200000/dt);
-        cameraAngle += rotateCameraBy;
+        //cameraAngle += rotateCameraBy;
+
+	//Experimental addition Start
+	randCounter++;
+	if (randCounter >= 2000) {
+	console.log(rotateCameraBy);
+	randCounter = 0;
+	}
+	//experimental addition end
 
         lastTime = Date.now();
 
