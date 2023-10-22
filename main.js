@@ -131,10 +131,14 @@ $(window).load(function(){
 
         lastTime = Date.now();
 
-        camera.position.x = cameraDistance * Math.cos(cameraAngle);
+        
 	if (yCameraToggle == 0) {
-        camera.position.y = Math.sin(cameraAngle)* 10;
-	} //experiment to see what camera y position actually does
+        	camera.position.x = cameraDistance * Math.cos(cameraAngle);
+	}
+	else {
+		camera.position.y = cameraDistance * Math.cos(cameraAngle);
+	}
+	// camera.position.y = Math.sin(cameraAngle)* 10; original code
         camera.position.z = cameraDistance * Math.sin(cameraAngle);
         camera.lookAt( scene.position );
 
@@ -255,6 +259,7 @@ function protoCameraControls(event) {
 	}
 	if (code == "KeyP") {
 	  yCameraToggle = (yCameraToggle + 1) % 2;
+	  console.log("Activated Toggle");
 	}
 }
 	
