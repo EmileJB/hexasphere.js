@@ -131,15 +131,15 @@ $(window).load(function(){
 
         lastTime = Date.now();
 
-        
+
+	camera.position.x = cameraDistance * Math.cos(cameraAngle);
 	if (yCameraToggle == 0) {
-        	camera.position.x = cameraDistance * Math.sin(cameraAngle); //should be cos
+	camera.position.z = cameraDistance * Math.sin(cameraAngle);
 	}
 	else {
-		camera.position.y = cameraDistance * Math.sin(cameraAngle); //unknown
+		camera.position.y = cameraDistance * Math.sin(cameraAngle);
 	}
 	// camera.position.y = Math.sin(cameraAngle)* 10; original code
-        camera.position.z = cameraDistance * Math.cos(cameraAngle); //should be sin
         camera.lookAt( scene.position );
 
         renderer.render( scene, camera );
