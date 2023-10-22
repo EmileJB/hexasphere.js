@@ -227,19 +227,22 @@ const mouse = new THREE.Vector2();
 }
 
 	//At this current state, should allow for rudimentary camera control moving left and right.
-	//Will also add an alarm tester to make sure that keydown event listener actually works
+	//W and S should zoom in and out if my hypothesis is correct
 function protoCameraControls(event) {
 	var code = event.code;
 	if (code == "KeyD") {
-	 var rotateCameraBy = (2 * Math.PI)/(200000/33);
+	 var rotateCameraBy = (2 * Math.PI)/(2000);
         cameraAngle += rotateCameraBy;
 	}
 	if (code == "KeyA") {
-	 var rotateCameraBy = (2 * Math.PI)/(200000/33);
+	 var rotateCameraBy = (2 * Math.PI)/(2000);
         cameraAngle -= rotateCameraBy;
 	}
-	if (code == "KeyX") {
-		alert("You Pressed X");
+	if (code == "KeyW") {
+	 cameraDistance--;
+	}
+	if (code == "KeyS") {
+	 cameraDistance++;
 	}
 }
 	
