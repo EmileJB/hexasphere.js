@@ -117,7 +117,8 @@ $(window).load(function(){
 
     var startTime = Date.now();
     var lastTime = Date.now();
-    var cameraAngle = -Math.PI/1.5;
+    var cameraAzimuthAngle = -Math.PI/2;
+    var cameraPolarAngle = Math.PI/2;
 
     var tick = function(){
 	    
@@ -132,13 +133,9 @@ $(window).load(function(){
         lastTime = Date.now();
 
 
-	camera.position.x = cameraDistance * Math.cos(cameraAngle);
-	if (yCameraToggle == 0) {
-	camera.position.z = cameraDistance * Math.sin(cameraAngle);
-	}
-	else {
-		camera.position.y = cameraDistance * Math.sin(cameraAngle);
-	}
+	camera.position.x = cameraDistance * Math.cos(cameraAzimuthAngle) * Math.sin(cameraPolarAngle);
+	camera.position.z = cameraDistance * Math.sin(cameraAzimuthAngle) * Math.sin(cameraPolarAngle);
+	camera.position.y = cameraDistance * Math.cos(cameraPolarAngle);
 	// camera.position.y = Math.sin(cameraAngle)* 10; original code
         camera.lookAt( scene.position );
 
@@ -239,17 +236,25 @@ const mouse = new THREE.Vector2();
 function protoCameraControls(event) {
 	var code = event.code;
 	if (code == "KeyD") {
-	 var rotateCameraBy = (2 * Math.PI)/(2000);
-        cameraAngle += rotateCameraBy;
+	 var rotateCameraBy = Math.PI/128;
+        cameraAzimuthAngle += rotateCameraBy;
 	}
 	if (code == "KeyA") {
-	 var rotateCameraBy = (2 * Math.PI)/(2000);
-        cameraAngle -= rotateCameraBy;
+	 var rotateCameraBy = Math.PI/128;
+        cameraAzimuthAngle -= rotateCameraBy;
 	}
 	if (code == "KeyW") {
-	 cameraDistance--;
+	 var rotateCameraBy = Math.PI/128;
+        cameraPolarAngle += rotateCameraBy;
 	}
 	if (code == "KeyS") {
+	 var rotateCameraBy = Math.PI/128;
+        cameraPolarAngle -= rotateCameraBy;
+	}
+	if (code == "KeyX") {
+	 cameraDistance--;
+	}
+	if (code == "KeyZ") {
 	 cameraDistance++;
 	}
 	if (code == "KeyL") {
@@ -257,10 +262,7 @@ function protoCameraControls(event) {
 	  console.log("Camera Y: " + camera.position.y);
 	  console.log("Camera Z: " + camera.position.z);
 	}
-	if (code == "KeyP") {
-	  yCameraToggle = (yCameraToggle + 1) % 2;
-	  console.log("Activated Toggle");
-	}
+	
 }
 	
 	
