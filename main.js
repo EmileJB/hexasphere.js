@@ -261,6 +261,7 @@ function protoCameraControls(event) {
 	  console.log("Camera X: " + camera.position.x);
 	  console.log("Camera Y: " + camera.position.y);
 	  console.log("Camera Z: " + camera.position.z);
+	  console.log(hexasphere.tiles);
 	}
 	
 }
